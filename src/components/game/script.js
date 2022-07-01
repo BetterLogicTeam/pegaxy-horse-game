@@ -127,7 +127,7 @@ function Horse(id, x, y){
 	}
 }
 
-var num_lap = 1, results = [], funds = 100, bethorse, amount;
+var num_lap = 1, results = [], funds = 0, bethorse, amount;
 
 //
 export function initialized() {
@@ -157,7 +157,7 @@ export function initialized() {
 				tds[i].className = 'result';//Reset the result.
 			}
 
-			document.getElementById('funds').innerText = funds;
+			// document.getElementById('funds').innerText = funds;
 			results = [];//Results array is to save the horse numbers when the race is finished.
 			horse1.run();
 			horse2.run();

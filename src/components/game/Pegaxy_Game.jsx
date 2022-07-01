@@ -60,8 +60,8 @@ const Pegaxy_Game = () => {
 
 
             <div id="bet">
-                <p>You currently have <span id="funds">100</span></p>
-                <label>Bet Amount (£)</label>
+                {/* <p>You currently have <span id="funds"></span></p> */}
+                <label>Bet Amount ($)</label>
                 <input type="number" id="amount" value="0"/>
                 <label>Bet on horse:</label>
                 <select id="bethorse">
@@ -73,7 +73,7 @@ const Pegaxy_Game = () => {
                 <label>Number of lap</label>
                 <input type="number" id="num_lap" name="num_lap" value="1"/>
             </div>
-            <img src="images/tree.png" className="tree" />
+            
             <br/>
             <table id="results">
                 <thead>
