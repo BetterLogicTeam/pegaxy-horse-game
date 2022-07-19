@@ -6,6 +6,14 @@ Date: 30/04/17
 */
 
 /*Create a Javascript Object for a horse with 3 parameters: HTML ID, position x and y*/
+ 
+//  export function myfunction(){
+// let myvariable= true
+//  }
+// import $ from 'jquery'
+
+
+
 function Horse(id, x, y){
 	this.element = document.getElementById(id);/*HTML element of the horse*/
 	this.speed = Math.random()*10 + 10; /*Initiate a random speed for each horse, the greater speed, the faster horse. The value is between 10 and 20*/
@@ -84,24 +92,44 @@ function Horse(id, x, y){
 			if (horse.y > horse.originY){
 				horse.speed = Math.random()*10 + 10;
 				horse.moveUp();
+				// myfunction();
+
 			}else{
 				horse.element.className = 'horse runRight';
 				//Nearly finish the lap
 				horse.lap ++;
 				horse.moveRight();
+
+				
 			}
 		}, 1000/this.speed)
 	}
 
 	/*Trigger the horse by run*/
 	this.run = function(){
+		
 		this.element.className = 'horse runRight';
 		this.moveRight();
 	}
+
 	this.arrive = function(){
+	
+
+		 count= count+1;
+		 if (count===4){
+			alert("count value is",results)
+		
+
+		 }
+
+	// alert("what is alert")
+		
+	
 		//Stop the horse run by change class to standRight
 		this.element.className = 'horse standRight';
+
 		this.lap = 0;//Reset the lap
+
 
 		/*Show the result*/
 		var tds = document.querySelectorAll('#results .result');//Get all table cell to display the result
@@ -121,16 +149,23 @@ function Horse(id, x, y){
 			}
 			document.getElementById('funds').innerText = funds;
 		}else if (results.length == 4){
+
 			//All horse arrived, enable again the Start Button
 			document.getElementById('start').disabled = false;
+
 		}
+
 	}
 }
 
-var num_lap = 1, results = [], funds = 0, bethorse, amount;
+var num_lap = 1, results = [], funds = 500, bethorse, amount;
+var count=0;
 
 //
 export function initialized() {
+	
+	document.getElementById('funds').innerText = funds;
+
 // console.log("what is init");
 	var horse1 = new Horse('horse1', 20, 4);
 	var horse2 = new Horse('horse2', 20, 8);
@@ -157,12 +192,13 @@ export function initialized() {
 				tds[i].className = 'result';//Reset the result.
 			}
 
-			// document.getElementById('funds').innerText = funds;
 			results = [];//Results array is to save the horse numbers when the race is finished.
 			horse1.run();
 			horse2.run();
 			horse3.run();
 			horse4.run();
+			
 		}
 	}
+	
 };
