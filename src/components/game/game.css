@@ -779,18 +779,33 @@ label {
 	background-position: 0px -64px;
 }
 
-#results .horse1 {
-	background-image: url(images/head0.png);
+#results .horse1::before {
+	font-weight: bold;
+	
+	content: "White ";
+
+	/* background-image: url(images/head0.png); */
 }
 
-#results .horse2 {
-	background-image: url(images/head4.png);
+#results .horse2::before {
+
+	font-weight: bold;
+	color: blue;
+	content: "Blue ";
+	/* background-image: url(images/head4.png); */
 }
 
-#results .horse3 {
-	background-image: url(images/head1.png);
+#results .horse3::before {
+	font-weight: bold;
+	color: green;
+	content: "Green ";
+	/* background-image: url(images/head1.png); */
 }
 
-#results .horse4 {
-	background-image: url(images/head2.png);
+#results .horse4::before {
+	/* background-image: url(images/head2.png); */
+	font-weight: bold;
+	color: gray;
+	content: "Gray ";
 }
+

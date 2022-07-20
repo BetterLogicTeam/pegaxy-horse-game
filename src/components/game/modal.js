@@ -1,27 +1,38 @@
-const modal = document.querySelector(".modal");
-const trigger = document.querySelector(".trigger");
-const closeButton = document.querySelector(".close-button");
+import React, { useEffect, useState } from 'react'
 
-function toggleModal() {
-    console.log(modal)
-    console.log(modal.classList)
-    try {
-        setTimeout(() => {
-    modal.classList.toggle("show-modal");
-            
-        }, 1000);
-        
-    } catch (error) {
-        
-    }
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+const Mymodal = () => {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => {setShow(true)};
+
+  return (
+    <div>
+
+
+<Button variant="primary" onClick={handleShow}>
+                    Launch demo modal
+                </Button>
+
+                <Modal show={show}  backdrop="false" onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+    </div>
+  )
 }
 
-export function windowOnClick(event) {
-    // if (event.target === modal) {
-        toggleModal();
-    // }
-}
-
-trigger.addEventListener("click", toggleModal);
-closeButton.addEventListener("click", toggleModal);
-window.addEventListener("click", windowOnClick);
+export default Mymodal
