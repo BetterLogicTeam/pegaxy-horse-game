@@ -4,6 +4,7 @@ import { loadWeb3 } from '../game/api/api'
 import { pegaxygameContractAddress, pegaxygameContractAddress_Abi } from './utilities/Contract'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+// import Button from '@mui/material/Button';
 
 
 /*
@@ -15,49 +16,10 @@ Date: 30/04/17
 
 /*Create a Javascript Object for a horse with 3 parameters: HTML ID, position x and y*/
 
-//  export function myfunction(){
-// let myvariable= true
-//  }
-// import $ from 'jquery'
-
-
-// const Result = () => {
-//     return (<>
-
-//         <table id="results">
-//             <thead>
-//                 <tr>
-//                     <th>Results</th>
-//                     <th></th>
-//                 </tr>
-//             </thead>
-//             <tbody>
-//                 <tr>
-//                     <td>1st</td>
-//                     <td className="result horse1"></td>
-//                 </tr>
-//                 <tr>
-//                     <td>2nd</td>
-//                     <td className="result horse2"></td>
-//                 </tr>
-//                 <tr>
-//                     <td>3rd</td>
-//                     <td className="result horse3"></td>
-//                 </tr>
-//                 <tr>
-//                     <td>4th</td>
-//                     <td className="result horse4"></td>
-//                 </tr>
-//             </tbody>
-//         </table>
-//     </>)
-// }
 const Pegaxy_Game = () => {
 
-
     const [show, setShow] = useState(false);
-    const [reult, setresult] = useState([]);
-
+    const [result, setresult] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => { setShow(true) };
@@ -93,7 +55,7 @@ const Pegaxy_Game = () => {
     }
 
 
-
+    let arr = []
 
     function Horse(id, x, y) {
         this.element = document.getElementById(id);/*HTML element of the horse*/
@@ -195,14 +157,6 @@ const Pegaxy_Game = () => {
 
         this.arrive = function () {
 
-
-            // count = count + 1;
-            // if (count === 4) {
-            //     handleShow()
-
-
-            // }
-
             //Stop the horse run by change class to standRight
             this.element.className = 'horse standRight';
 
@@ -210,19 +164,37 @@ const Pegaxy_Game = () => {
 
 
             /*Show the result*/
-            var tds = document.querySelectorAll('#results .result');//Get all table cell to display the result
+            // var tds = document.querySelectorAll('#results .result');//Get all table cell to display the result
             // console.log("what is tds", tds)
             //results.length is the current arrive position
-            tds[results.length].className = 'result horse' + this.number;//The class of result look like: result horse1...
-          
+            // tds[results.length].className = 'result horse' + this.number;//The class of result look like: result horse1...
+
             //Push the horse number to results array, according the the results array, we know the order of race results
-        //   console.log("what is this number",this.number)
+            //   console.log("what is this number",this.number)
             results.push(this.number);
-           setresult([...tds])
-           console.log("what is the value",reult)
-            console.log("what is reult", results.length)
+
+            if (this.number == 1) {
+                arr.push('White')
+
+            }
+            if (this.number == 2) {
+                arr.push('Blue')
+
+            }
+            if (this.number == 3) {
+                arr.push('Green')
+
+            }
+            if (this.number == 4) {
+                arr.push('Brown')
+
+            }
+        
+            setresult([...arr])
+
             if (results.length == 4) {
-                // handleShow()
+                handleShow()
+            
             }
 
             //Win horse
@@ -270,15 +242,15 @@ const Pegaxy_Game = () => {
                 alert('Not enough funds.');
             }
             else if (num_lap <= 0) {
-                alert('Number of lap must be greater than 1.');
+                alert('Number of lap must be greater than 0.');
             } else {
 
                 /*Started the game*/
                 this.disabled = true;/*Disable the start button*/
-                var tds = document.querySelectorAll('#results .result');//Get all cells of result table.
-                for (var i = 0; i < tds.length; i++) {
-                    tds[i].className = 'result';//Reset the result.
-                }
+                // var tds = document.querySelectorAll('#results .result');//Get all cells of result table.
+                // for (var i = 0; i < tds.length; i++) {
+                //     tds[i].className = 'result';//Reset the result.
+                // }
 
                 results = [];//Results array is to save the horse numbers when the race is finished.
                 horse1.run();
@@ -290,11 +262,7 @@ const Pegaxy_Game = () => {
         }
 
     };
-    useEffect(() => {
-        initialized()
-
-
-    }, [1])
+   
 
     useEffect(() => {
         initialized()
@@ -303,7 +271,7 @@ const Pegaxy_Game = () => {
 
     }, [])
 
-
+    console.log("what is state array", result)
 
 
     return (
@@ -314,41 +282,40 @@ const Pegaxy_Game = () => {
                 {/* {value? setShow(true):""} */}
                 {/* <button onClick={() => startRace()}>click me</button> */}
 
-                {/* <Button variant="primary" onClick={handleShow}>
-                    Launch demo modal
-                </Button> */}
+
+
 
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
+                        <Modal.Title>Results</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <table id="results">
-                            <thead>
-                                <tr>
-                                    <th>Results</th>
-                                    <th></th>
+                    <table  className='mx-auto  table-bordered' style={{width:"100%"}}>
+                            <thead className=''>
+                                <tr className='text-center'>
+                                    <th>1ST</th>
+                                    <th>2ND</th>
+                                    <th>3RD</th>
+                                    <th>4TH</th>
+
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className=''>
                                 <tr>
-                                    <td>1st</td>
-                                    <td className="result horse1"></td>
+                                {
+                            result.map((value, index) => {
+                                return <td className="text-center">{value}</td>
+                            })
+                        } 
+                                    
                                 </tr>
-                                <tr>
-                                    <td>2nd</td>
-                                    <td className="result horse2"></td>
-                                </tr>
-                                <tr>
-                                    <td>3rd</td>
-                                    <td className="result horse3"></td>
-                                </tr>
-                                <tr>
-                                    <td>4th</td>
-                                    <td className="result horse4"></td>
-                                </tr>
+                               
                             </tbody>
                         </table>
+
+                     
+
+                     
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
@@ -425,7 +392,7 @@ const Pegaxy_Game = () => {
 
                         <br />
 
-                        <table id="results">
+                        {/* <table id="results">
                             <thead>
                                 <tr>
                                     <th>Results</th>
@@ -450,7 +417,7 @@ const Pegaxy_Game = () => {
                                     <td className="result horse4"></td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> */}
 
                     </div>
                 </div>
